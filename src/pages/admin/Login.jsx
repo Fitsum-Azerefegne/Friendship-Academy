@@ -69,7 +69,7 @@ export default function Login() {
         </div>
 
         <div className="mt-6 flex flex-col items-center text-center">
-          <Crest initial="F" size={52} tone="light" />
+          <img src="/Logo.png" alt="Friendship Academy logo" className="h-16 w-16 rounded-full object-cover" />
           <h1 className="mt-4 font-display text-2xl font-semibold text-white">{t.loginTitle}</h1>
           <p className="mt-1.5 text-sm text-white/50">{t.loginSubtitle}</p>
         </div>

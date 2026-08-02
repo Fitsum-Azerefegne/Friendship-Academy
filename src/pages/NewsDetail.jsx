@@ -4,12 +4,19 @@ import { ArrowLeft } from "lucide-react";
 import { getNews } from "../api/news";
 import Spinner from "../components/ui/Spinner";
 import { formatDate } from "../utils/format";
+import { usePublicLang } from "../context/PublicLangContext";
 
 export default function NewsDetail() {
   const { id } = useParams();
+  const { lang } = usePublicLang();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+
+  const backLabel = lang === "am" ? "ወደ ዜናዎች ተመለስ" : "Back to News";
+  const notFoundTitle = lang === "am" ? "ጽሁፉ አልተገኘም" : "Article not found";
+  const notFoundDesc = lang === "am" ? "ይህ ታሪክ ተንቀሳቅሷል ወይም ተወግዷል።" : "This story may have been moved or removed.";
+  const byLabel = lang === "am" ? "በ" : "By";
 
   useEffect(() => {
     (async () => {
@@ -22,15 +29,15 @@ export default function NewsDetail() {
     })();
   }, [id]);
 
-  if (loading) return <Spinner size="lg" label="Loading article…" />;
+  if (loading) return <Spinner size="lg" label={lang === "am" ? "ጽሁፍ በመጫን ላይ…" : "Loading article…"} />;
 
   if (notFound || !article) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center">
-        <p className="font-display text-2xl font-semibold text-plum-900">Article not found</p>
-        <p className="mt-2 text-ink-950/50">This story may have been moved or removed.</p>
+        <p className="font-display text-2xl font-semibold text-plum-900">{notFoundTitle}</p>
+        <p className="mt-2 text-ink-950/50">{notFoundDesc}</p>
         <Link to="/news" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-plum-700">
-          <ArrowLeft className="h-4 w-4" /> Back to News
+          <ArrowLeft className="h-4 w-4" /> {backLabel}
         </Link>
       </div>
     );
@@ -43,14 +50,14 @@ export default function NewsDetail() {
       </div>
       <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
         <Link to="/news" className="inline-flex items-center gap-2 text-sm font-semibold text-plum-700 hover:text-plum-500">
-          <ArrowLeft className="h-4 w-4" /> Back to News
+          <ArrowLeft className="h-4 w-4" /> {backLabel}
         </Link>
         <div className="mt-6 flex items-center gap-3 text-xs text-ink-950/40">
           <span className="rounded-full bg-plum-50 px-2.5 py-1 font-semibold uppercase tracking-wide text-plum-700">
             {article.category}
           </span>
           <span>{formatDate(article.date)}</span>
-          <span>· By {article.author}</span>
+          <span>· {byLabel} {article.author}</span>
         </div>
         <h1 className="mt-4 font-display text-3xl font-semibold leading-tight text-plum-900 sm:text-4xl">
           {article.title}

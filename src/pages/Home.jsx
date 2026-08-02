@@ -42,60 +42,63 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden bg-plum-950">
-        <img
-          src={content.heroImage}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-20"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-plum-950 via-plum-950/80 to-plum-950/40" />
+        <img src={content.heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-plum-950 via-plum-950/60 to-plum-950/20" />
+        <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-plum-700/20 blur-3xl animate-float-slow" />
+        <div className="pointer-events-none absolute top-1/2 -left-32 h-72 w-72 rounded-full bg-brass-500/10 blur-3xl animate-float-mid" style={{ animationDelay: "2s" }} />
+        <div className="pointer-events-none absolute bottom-0 right-1/3 h-56 w-56 rounded-full bg-plum-600/15 blur-2xl animate-float-slow" style={{ animationDelay: "3.5s" }} />
+
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 sm:px-6 sm:pb-28 sm:pt-32 lg:px-8">
-          <div key={lang} className="animate-fade-in-up" style={{ animationDelay: "0ms" }}>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-300">
-              {t.established}
-            </span>
-          </div>
-
-          <h1
-            key={`title-${lang}`}
-            className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl animate-fade-in-up"
-            style={{ animationDelay: "80ms" }}
-          >
-            {t.schoolNameDisplay}
-          </h1>
-          <p
-            key={`tagline-${lang}`}
-            className="mt-5 max-w-xl text-lg text-white/70 animate-fade-in-up"
-            style={{ animationDelay: "160ms" }}
-          >
-            {t.tagline}
-          </p>
-          <div
-            key={`buttons-${lang}`}
-            className="mt-9 flex flex-wrap gap-3 animate-fade-in-up"
-            style={{ animationDelay: "240ms" }}
-          >
-            <Link
-              to="/contact"
-              className="lift-hover inline-flex items-center gap-2 rounded-full bg-brass-500 px-6 py-3 text-sm font-semibold text-ink-950 hover:bg-brass-400 hover:shadow-lg hover:shadow-brass-500/20 transition-colors"
-            >
-              {t.applyButton} <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/about"
-              className="lift-hover inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-            >
-              {t.aboutButton}
-            </Link>
-          </div>
-
-          <div
-            key={`stats-${lang}`}
-            className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:max-w-xl animate-fade-in-up"
-            style={{ animationDelay: "320ms" }}
-          >
-            <StatCard icon={Users} value={content.stats.students.toLocaleString()} label={t.statsStudents} tone="dark" />
-            <StatCard icon={GraduationCap} value={content.stats.teachers} label={t.statsTeachers} tone="dark" />
-            <StatCard icon={CalendarClock} value={`${content.stats.yearsOpen} ${t.yearsSuffix}`} label={t.statsEducating} tone="dark" />
+          <div className="flex flex-col gap-12">
+            {/* Left: text content */}
+            <div className="flex-1">
+              <div key={lang} className="animate-fade-in-up" style={{ animationDelay: "0ms" }}>
+                <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-300">
+                  {t.established}
+                </span>
+              </div>
+              <h1
+                key={`title-${lang}`}
+                className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl animate-fade-in-up"
+                style={{ animationDelay: "80ms" }}
+              >
+                {t.schoolNameDisplay}
+              </h1>
+              <p
+                key={`tagline-${lang}`}
+                className="mt-5 max-w-xl text-lg text-white/70 animate-fade-in-up"
+                style={{ animationDelay: "160ms" }}
+              >
+                {t.tagline}
+              </p>
+              <div
+                key={`buttons-${lang}`}
+                className="mt-9 flex flex-wrap gap-3 animate-fade-in-up"
+                style={{ animationDelay: "240ms" }}
+              >
+                <Link
+                  to="/contact"
+                  className="lift-hover inline-flex items-center gap-2 rounded-full bg-brass-500 px-6 py-3 text-sm font-semibold text-ink-950 hover:bg-brass-400 hover:shadow-lg hover:shadow-brass-500/20 transition-colors"
+                >
+                  {t.applyButton} <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/about"
+                  className="lift-hover inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                >
+                  {t.aboutButton}
+                </Link>
+              </div>
+              <div
+                key={`stats-${lang}`}
+                className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:max-w-xl animate-fade-in-up"
+                style={{ animationDelay: "320ms" }}
+              >
+                <StatCard icon={Users} value={content.stats.students.toLocaleString()} label={t.statsStudents} tone="dark" />
+                <StatCard icon={GraduationCap} value={content.stats.teachers} label={t.statsTeachers} tone="dark" />
+                <StatCard icon={CalendarClock} value={`${content.stats.yearsOpen} ${t.yearsSuffix}`} label={t.statsEducating} tone="dark" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

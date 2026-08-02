@@ -10,6 +10,8 @@ export default function PageHero({ eyebrow, title, description }) {
         }}
         aria-hidden="true"
       />
+      <div className="pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full bg-plum-700/25 blur-3xl animate-float-slow" />
+      <div className="pointer-events-none absolute bottom-0 -left-16 h-48 w-48 rounded-full bg-brass-500/10 blur-2xl animate-float-mid" style={{ animationDelay: "2s" }} />
       <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 animate-fade-in-up">
         {eyebrow && (
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brass-300">

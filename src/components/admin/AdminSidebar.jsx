@@ -48,7 +48,7 @@ export default function AdminSidebar({ open, onClose }) {
       >
         <div className="flex items-center justify-between gap-2.5 px-5 py-5">
           <div className="flex items-center gap-2.5">
-            <Crest initial="F" size={34} tone="light" />
+            <img src="/Logo.png" alt="Friendship Academy logo" className="h-9 w-9 rounded-full object-cover shrink-0" />
             <div className="leading-tight">
               <p className="font-display text-sm font-semibold">{t.brand}</p>
               <p className="text-[11px] text-white/40">{t.brandSubtitle}</p>

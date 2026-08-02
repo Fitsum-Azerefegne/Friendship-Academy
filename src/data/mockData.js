@@ -1,21 +1,47 @@
 // Demo/fallback content.
-// The app always tries the real API first (see src/api/*). If the request
-// fails — e.g. VITE_API_URL hasn't been pointed at a live backend yet —
-// these fixtures are used instead so the site is fully browsable in the
-// meantime. Replace/remove once your backend is connected.
-
 export const mockContent = {
   schoolName: "Friendship Academy",
+  schoolNameAm: "ፍሬንድሺፕ አካዳሚ",
   tagline: "Where Curiosity Becomes Character",
   heroImage:
     "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop",
   stats: { students: 1240, teachers: 86, yearsOpen: 47 },
   mission:
-    "To cultivate confident, principled learners who question deeply, act with integrity, and contribute meaningfully to their communities.",
+    "To transition the hope and enthusiasm of children's families into satisfaction, and to nurture the generation the country needs by leveraging positive influences in their environment; by withstanding negative influences, implementing a foundational learning-teaching practice based on quality childcare, caregiving, and development aimed at bringing skill transformation in children, and qualifying children for primary education. /Quality education centered on competitiveness/",
+  missionAm:
+    "የህፃናትን ቤተሰብ ተስፋ እና ሞቅት ወደ እርካታ ለማሸጋገር እና ሀገር የምትፈልገውን ትውልድ ለመፍጠር፤ በአካባቢያቸው ያሉ በጎ ተፅዕኖ በመጠቀም፤ አወንታዊ ተፅዕኖ በመቋቋም፤ ይህን መሰረት ያደረገ በህፃናት ላይ የክህሎት ለውጥ ለማምጣት ጥራት ያለው የህፃናት አየያዝና እንክብካቤ እና እድገት መሰረት ያደረገ የመማር ማስተማር ተግባር ለህብረተሰቡ በማቅረብ ህፃናትን ለአንደኛ ደረጃ ትምህርት ማብቃት። /ተወዳዳሪነት ማዕከል ያደረገ የትምህርት ጥራት/",
   vision:
-    "A school where every student is known, challenged, and prepared to lead a purposeful life beyond our gates.",
+    "To make it a center for building the next generation, where children—the future heirs of the country—gather foundational stepping stones that will serve them for a lifetime.",
+  visionAm:
+    "የቀጣይ ሀገር ተረካቢ ህፃናትን ለህይወት ዘመናቸው የሚሆን የመዕዘን ድንጋይ የሚሰበስቡበት የትውልድ ማነፀያ ማዕከል ማድረግ።",
+  goal:
+    "By strengthening the human and material organization of Friendship Academy and fulfilling all necessary inputs to deliver educational quality, to provide quality education for children, making our institution the top choice for city residents in childcare, caregiving, and upbringing.",
+  goalAm:
+    "ፍሬንድሺፕ አካዳሚ ያለውን የሰውና የማቴሪያል አደረጃጀት አጠናክረን የትምህርት ጥራትን ለማዳረስ የተሟላ ግብዓት በመሙላት ጥራት ያለው ትምህርት ለህፃናት በማቅረብ በህፃናት አያያዝ፤ እንክብካቤ እና አስተዳደግ በከተማችን ነዋሪዎች ተቋማችንን በቀዳሚነት ተመራጭ ማድረግ።",
+  values: [
+    "High commitment toward child development, caregiving, and handling.",
+    "Practical skills, collaboration, and good relationships among children, parents, and ourselves.",
+    "Respect for humanity; giving and receiving love for children; fairness and equality in our service delivery process.",
+    "Allowing children to make appropriate mistakes and helping them learn from those mistakes.",
+    "Believing that effort is an opportunity rather than a problem, and striving for positive change.",
+    "Fulfilling responsibility and accountability by maintaining strong work discipline.",
+    "Patience.",
+    "Giving priority to advance preparation.",
+  ],
+  valuesAm: [
+    "ለህፃናት እድገት፤ እንክብካቤ፤ አያያዝ የሚሰጠዉ ቁርጠኝነት ከፍተኛ።",
+    "ከህፃናት፤ ከወላጆች እና እርስ በርሳችን ጋር ያለን የትግበራ ክህሎት፤ ትብብር እና መልካም ግንኙነት።",
+    "ለሰው ልጅ ያለን ክብር፤ ለህፃናት ፍቅር መስጠት፤ መቀበል፤ በአገልግሎት አሰጣጣችን ሂደት የምንከተለው ፍትሃዊነት እና እኩልነት።",
+    "ህፃናት ተገቢውን ስህተት እንዲሠሩ መፍቀድ እና ከስህተታቸዉ እንዲማሩ ማድረግ።",
+    "ጥረት እድል እንጂ ችግር አለመሆኑን አምኖ ለለውጥ መትጋት።",
+    "ጠንካራ የሥራ ዲሲፕሊን በመከተል ኃላፊነት እና ተጠያቂነትን መወጣት።",
+    "ትዕግሥት።",
+    "ለቅድመ ዝግጅት ትኩረት መስጠት።",
+  ],
   history:
     "Founded in 1979 by a small group of educators who believed rigorous academics and genuine kindness were not in tension, Friendship Academy began with 62 students in a single converted farmhouse. Nearly five decades on, we've grown into a three-campus school without losing that founding conviction: that a school's first job is to know each child well.",
+  historyAm:
+    "ፍሬንድሺፕ አካዳሚ በ1979 ዓ.ም. ጥብቅ ትምህርትና እውነተኛ ደግነት አብረው ሊኖሩ ይችላሉ ብለው ባመኑ ጥቂት አስተማሪዎች ተቋቋመ። ትምህርት ቤቱ 62 ተማሪዎችን ይዞ ጀምሮ፣ ዛሬ ሶስት ካምፓሶች ያሉት ትምህርት ቤት ሆኗል — ነገር ግን የመጀመሪያ እምነቱን አልተወም፡ የትምህርት ቤቱ ዋና ሥራ እያንዳንዱን ልጅ በደንብ ማወቅ ነው።",
   principal: {
     name: "Dr. Eleanor Marsh",
     title: "Principal",
@@ -127,139 +153,26 @@ export const mockEvents = [
 ];
 
 export const mockStaff = [
-  {
-    id: "s1",
-    name: "Dr. Eleanor Marsh",
-    title: "Principal",
-    department: "Leadership",
-    email: "e.marsh@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s2",
-    name: "Marcus Whitfield",
-    title: "Vice Principal, Academics",
-    department: "Leadership",
-    email: "m.whitfield@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s3",
-    name: "Dara Adeyemi",
-    title: "Head of Engineering & Robotics",
-    department: "Science & Technology",
-    email: "d.adeyemi@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s4",
-    name: "Priya Nathanson",
-    title: "Mathematics Teacher, Grade 9-10",
-    department: "Mathematics",
-    email: "p.nathanson@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s5",
-    name: "Grace Okafor",
-    title: "Head Librarian",
-    department: "Library & Media",
-    email: "g.okafor@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s6",
-    name: "Tomás Reyes",
-    title: "Athletics Director & Swim Coach",
-    department: "Athletics",
-    email: "t.reyes@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s7",
-    name: "Naomi Fischer",
-    title: "Chair, Visual & Performing Arts",
-    department: "Arts",
-    email: "n.fischer@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop",
-  },
-  {
-    id: "s8",
-    name: "Samuel Otieno",
-    title: "English & Literature Teacher",
-    department: "Humanities",
-    email: "s.otieno@friendshipacademy.edu",
-    photo: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop",
-  },
+  { id: "s1", name: "Dr. Eleanor Marsh", title: "Principal", department: "Leadership", email: "e.marsh@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" },
+  { id: "s2", name: "Marcus Whitfield", title: "Vice Principal, Academics", department: "Leadership", email: "m.whitfield@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" },
+  { id: "s3", name: "Dara Adeyemi", title: "Head of Engineering & Robotics", department: "Science & Technology", email: "d.adeyemi@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop" },
+  { id: "s4", name: "Priya Nathanson", title: "Mathematics Teacher, Grade 9-10", department: "Mathematics", email: "p.nathanson@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" },
+  { id: "s5", name: "Grace Okafor", title: "Head Librarian", department: "Library & Media", email: "g.okafor@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" },
+  { id: "s6", name: "Tomás Reyes", title: "Athletics Director & Swim Coach", department: "Athletics", email: "t.reyes@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=400&auto=format&fit=crop" },
+  { id: "s7", name: "Naomi Fischer", title: "Chair, Visual & Performing Arts", department: "Arts", email: "n.fischer@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" },
+  { id: "s8", name: "Samuel Otieno", title: "English & Literature Teacher", department: "Humanities", email: "s.otieno@friendshipacademy.edu", photo: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?q=80&w=400&auto=format&fit=crop" },
 ];
 
-// Gallery photos are grouped into "albums" — one per school event — so the
-// public Gallery page can show a year + Amharic event name and pop open
-// just that event's photos when clicked.
 export const mockGalleryEvents = [
-  {
-    id: "ev1",
-    yearEc: "2017",
-    titleAm: "የወላጆች ቀን",
-    titleEn: "Parent-Teacher Conference Day",
-    category: "Events",
-  },
-  {
-    id: "ev2",
-    yearEc: "2017",
-    titleAm: "ክፍት የግቢ ቀን",
-    titleEn: "Open Campus Day",
-    category: "Events",
-  },
-  {
-    id: "ev3",
-    yearEc: "2016",
-    titleAm: "የባህል ቀን",
-    titleEn: "International Culture Day",
-    category: "Events",
-  },
-  {
-    id: "ev4",
-    yearEc: "2016",
-    titleAm: "የዋና ውድድር",
-    titleEn: "Regional Swim Championship",
-    category: "Sports",
-  },
-  {
-    id: "ev5",
-    yearEc: "2017",
-    titleAm: "የቅርጫት ኳስ ውድድር",
-    titleEn: "Varsity Basketball",
-    category: "Sports",
-  },
-  {
-    id: "ev6",
-    yearEc: "2017",
-    titleAm: "አዲስ ቤተ መጻሕፍት",
-    titleEn: "New Library Wing",
-    category: "Campus",
-  },
-  {
-    id: "ev7",
-    yearEc: "2016",
-    titleAm: "የግቢ እይታዎች",
-    titleEn: "Campus Views",
-    category: "Campus",
-  },
-  {
-    id: "ev8",
-    yearEc: "2017",
-    titleAm: "የምረቃ ስነ ስርዓት",
-    titleEn: "Graduation Ceremony",
-    category: "Graduation",
-  },
-  {
-    id: "ev9",
-    yearEc: "2017",
-    titleAm: "የጥበብ ትርኢት",
-    titleEn: "Spring Arts Showcase",
-    category: "Arts",
-  },
+  { id: "ev1", yearEc: "2017", titleAm: "የወላጆች ቀን", titleEn: "Parent-Teacher Conference Day", category: "Events" },
+  { id: "ev2", yearEc: "2017", titleAm: "ክፍት የግቢ ቀን", titleEn: "Open Campus Day", category: "Events" },
+  { id: "ev3", yearEc: "2016", titleAm: "የባህል ቀን", titleEn: "International Culture Day", category: "Events" },
+  { id: "ev4", yearEc: "2016", titleAm: "የዋና ውድድር", titleEn: "Regional Swim Championship", category: "Sports" },
+  { id: "ev5", yearEc: "2017", titleAm: "የቅርጫት ኳስ ውድድር", titleEn: "Varsity Basketball", category: "Sports" },
+  { id: "ev6", yearEc: "2017", titleAm: "አዲስ ቤተ መጻሕፍት", titleEn: "New Library Wing", category: "Campus" },
+  { id: "ev7", yearEc: "2016", titleAm: "የግቢ እይታዎች", titleEn: "Campus Views", category: "Campus" },
+  { id: "ev8", yearEc: "2017", titleAm: "የምረቃ ስነ ስርዓት", titleEn: "Graduation Ceremony", category: "Graduation" },
+  { id: "ev9", yearEc: "2017", titleAm: "የጥበብ ትርኢት", titleEn: "Spring Arts Showcase", category: "Arts" },
 ];
 
 export const mockGallery = [
@@ -281,33 +194,9 @@ export const mockGallery = [
 ];
 
 export const mockMessages = [
-  {
-    id: "m1",
-    name: "Harriet Solano",
-    email: "harriet.solano@example.com",
-    subject: "Admissions timeline for Grade 6",
-    message: "Hello, could you tell me when Grade 6 admissions decisions are typically released? Thank you.",
-    created_at: "2026-07-05",
-    read: false,
-  },
-  {
-    id: "m2",
-    name: "Daniel Kwon",
-    email: "d.kwon@example.com",
-    subject: "Campus tour request",
-    message: "We'd like to book a campus tour for late July if possible, for a family of four.",
-    created_at: "2026-07-03",
-    read: true,
-  },
-  {
-    id: "m3",
-    name: "Ines Duarte",
-    email: "ines.duarte@example.com",
-    subject: "Transfer student question",
-    message: "My son is currently in Grade 9 abroad and we're relocating in September. What documents do you need for a mid-year transfer?",
-    created_at: "2026-06-29",
-    read: false,
-  },
+  { id: "m1", name: "Harriet Solano", email: "harriet.solano@example.com", subject: "Admissions timeline for Grade 6", message: "Hello, could you tell me when Grade 6 admissions decisions are typically released? Thank you.", created_at: "2026-07-05", read: false },
+  { id: "m2", name: "Daniel Kwon", email: "d.kwon@example.com", subject: "Campus tour request", message: "We'd like to book a campus tour for late July if possible, for a family of four.", created_at: "2026-07-03", read: true },
+  { id: "m3", name: "Ines Duarte", email: "ines.duarte@example.com", subject: "Transfer student question", message: "My son is currently in Grade 9 abroad and we're relocating in September. What documents do you need for a mid-year transfer?", created_at: "2026-06-29", read: false },
 ];
 
 export const mockAcademics = {

@@ -25,8 +25,8 @@ const quickLinksData = {
 };
 
 const footerText = {
-  en: { quickLinks: "Quick Links", contact: "Contact", officeHours: "Office Hours", hours: ["Monday – Friday: 7:30 AM – 4:30 PM", "Saturday: 9:00 AM – 12:00 PM", "Sunday: Closed"], rights: "All rights reserved.", built: "Built with care for our school community." },
-  am: { quickLinks: "ፈጣን አገናኞች", contact: "አድራሻ", officeHours: "የቢሮ ሰዓታት", hours: ["ሰኞ – አርብ: 7:30 ጠ.ቀ – 4:30 ከ.ቀ", "ቅዳሜ: 9:00 ጠ.ቀ – 12:00 ቀ", "እሁድ: ዝግ"], rights: "መብቱ በሕግ የተጠበቀ ነው።", built: "ለትምህርት ቤታችን ማህበረሰብ በፍቅር ተሰርቷል።" },
+  en: { quickLinks: "Quick Links", contact: "Contact", officeHours: "Office Hours", hours: ["Monday – Friday: 7:30 AM – 4:30 PM", "Saturday: 9:00 AM – 12:00 PM", "Sunday: Closed"], rights: "All rights reserved.", built: "Built with care for our school community.", copyright: "© 2026 Friendship Academy." },
+  am: { quickLinks: "ፈጣን አገናኞች", contact: "አድራሻ", officeHours: "የቢሮ ሰዓታት", hours: ["ሰኞ – አርብ: 7:30 ጠ.ቀ – 4:30 ከ.ቀ", "ቅዳሜ: 9:00 ጠ.ቀ – 12:00 ቀ", "እሁድ: ዝግ"], rights: "መብቱ በሕግ የተጠበቀ ነው።", built: "ለትምህርት ቤታችን ማህበረሰብ በፍቅር ተሰርቷል።", copyright: "© ፳፻፲፰ ወዳጅነት አካዳሚ።" },
 };
 
 const socialIcons = [
@@ -46,7 +46,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2.5">
-              <Crest initial="F" size={36} tone="light" />
+              <img src="/Logo.png" alt="Friendship Academy logo" className="h-9 w-9 rounded-full object-cover" />
               <p className="font-display text-lg font-semibold">{mockContent.schoolName}</p>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-white/70 max-w-xs">
@@ -109,7 +109,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/20 pt-6 sm:flex-row">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} {mockContent.schoolName}. {ft.rights}
+            {ft.copyright} {ft.rights}
           </p>
           <p className="text-xs text-white/50">{ft.built}</p>
         </div>

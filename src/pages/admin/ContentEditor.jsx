@@ -35,6 +35,29 @@ export default function ContentEditor() {
     setForm((f) => ({ ...f, stats: { ...f.stats, [field]: Number(value) || 0 } }));
   }
 
+  function updateValue(lang, index, text) {
+    const key = lang === "am" ? "valuesAm" : "values";
+    setForm((f) => {
+      const arr = [...(f[key] || [])];
+      arr[index] = text;
+      return { ...f, [key]: arr };
+    });
+  }
+
+  function addValue(lang) {
+    const key = lang === "am" ? "valuesAm" : "values";
+    setForm((f) => ({ ...f, [key]: [...(f[key] || []), ""] }));
+  }
+
+  function removeValue(lang, index) {
+    const key = lang === "am" ? "valuesAm" : "values";
+    setForm((f) => {
+      const arr = [...(f[key] || [])];
+      arr.splice(index, 1);
+      return { ...f, [key]: arr };
+    });
+  }
+
   function handleHeroChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -92,34 +115,79 @@ export default function ContentEditor() {
           </div>
 
           <div className="rounded-2xl border border-plum-100 bg-white p-6">
-            <h2 className="font-display text-lg font-semibold text-plum-900">Mission & Vision</h2>
+            <h2 className="font-display text-lg font-semibold text-plum-900">Mission, Vision & Goal</h2>
             <div className="mt-4 space-y-4">
               <div>
-                <label className="text-sm font-medium text-ink-950/70">Mission Statement</label>
-                <textarea
-                  rows={3}
-                  value={form.mission}
-                  onChange={(e) => update("mission", e.target.value)}
-                  className={inputClass}
-                />
+                <label className="text-sm font-medium text-ink-950/70">Mission (English)</label>
+                <textarea rows={3} value={form.mission || ""} onChange={(e) => update("mission", e.target.value)} className={inputClass} />
               </div>
               <div>
-                <label className="text-sm font-medium text-ink-950/70">Vision Statement</label>
-                <textarea
-                  rows={3}
-                  value={form.vision}
-                  onChange={(e) => update("vision", e.target.value)}
-                  className={inputClass}
-                />
+                <label className="text-sm font-medium text-ink-950/70">ተልዕኮ (Amharic)</label>
+                <textarea rows={3} value={form.missionAm || ""} onChange={(e) => update("missionAm", e.target.value)} className={inputClass} />
               </div>
               <div>
-                <label className="text-sm font-medium text-ink-950/70">School History</label>
-                <textarea
-                  rows={5}
-                  value={form.history}
-                  onChange={(e) => update("history", e.target.value)}
-                  className={inputClass}
-                />
+                <label className="text-sm font-medium text-ink-950/70">Vision (English)</label>
+                <textarea rows={3} value={form.vision || ""} onChange={(e) => update("vision", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">ራዕይ (Amharic)</label>
+                <textarea rows={3} value={form.visionAm || ""} onChange={(e) => update("visionAm", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">Goal (English)</label>
+                <textarea rows={3} value={form.goal || ""} onChange={(e) => update("goal", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">ግብ (Amharic)</label>
+                <textarea rows={3} value={form.goalAm || ""} onChange={(e) => update("goalAm", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">School History (English)</label>
+                <textarea rows={5} value={form.history || ""} onChange={(e) => update("history", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">የትምህርት ቤቱ ታሪክ (Amharic)</label>
+                <textarea rows={5} value={form.historyAm || ""} onChange={(e) => update("historyAm", e.target.value)} className={inputClass} />
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-plum-100 bg-white p-6">
+            <h2 className="font-display text-lg font-semibold text-plum-900">Our Values</h2>
+            <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {/* English values */}
+              <div>
+                <p className="text-sm font-semibold text-ink-950/60 mb-2">English</p>
+                <div className="space-y-2">
+                  {(form.values || []).map((v, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-plum-950 text-[11px] font-bold text-white">{i + 1}</span>
+                      <input value={v} onChange={(e) => updateValue("en", i, e.target.value)}
+                        className={inputClass + " mt-0 flex-1"} placeholder={`Value ${i + 1}`} />
+                      <button type="button" onClick={() => removeValue("en", i)}
+                        className="mt-0 shrink-0 rounded-lg border border-red-200 px-2 text-red-500 hover:bg-red-50 text-xs">✕</button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => addValue("en")}
+                    className="mt-1 text-xs font-semibold text-plum-700 hover:text-plum-500">+ Add value</button>
+                </div>
+              </div>
+              {/* Amharic values */}
+              <div>
+                <p className="text-sm font-semibold text-ink-950/60 mb-2">አማርኛ</p>
+                <div className="space-y-2">
+                  {(form.valuesAm || []).map((v, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-plum-950 text-[11px] font-bold text-white">{i + 1}</span>
+                      <input value={v} onChange={(e) => updateValue("am", i, e.target.value)}
+                        className={inputClass + " mt-0 flex-1"} placeholder={`እሴት ${i + 1}`} />
+                      <button type="button" onClick={() => removeValue("am", i)}
+                        className="mt-0 shrink-0 rounded-lg border border-red-200 px-2 text-red-500 hover:bg-red-50 text-xs">✕</button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={() => addValue("am")}
+                    className="mt-1 text-xs font-semibold text-plum-700 hover:text-plum-500">+ እሴት ጨምር</button>
+                </div>
               </div>
             </div>
           </div>

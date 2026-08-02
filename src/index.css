@@ -80,6 +80,36 @@ body {
   overflow: hidden;
 }
 
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-18px) scale(1.04); }
+}
+@keyframes float-mid {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-12px) scale(1.02); }
+}
+@keyframes shimmer-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+.animate-float-mid {
+  animation: float-mid 5s ease-in-out infinite;
+}
+.animate-shimmer-pulse {
+  animation: shimmer-pulse 2.5s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
 /* ---------- Animations ---------- */
 
 @keyframes fade-in-up {
