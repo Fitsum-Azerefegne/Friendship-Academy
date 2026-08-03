@@ -15,20 +15,20 @@ export const homeTranslations = {
     quickLinks: [
       { to: "/news", label: "News", description: "Updates & announcements" },
       { to: "/academics", label: "Academics", description: "Curriculum & programs" },
-      { to: "/gallery", label: "Gallery", description: "Campus life in pictures" },
-      { to: "/contact", label: "Visit Us", description: "Directions & campus tours" },
+      { to: "/gallery", label: "Gallery", description: "School life in pictures" },
+      { to: "/contact", label: "Visit Us", description: "Directions & tours" },
     ],
     newsEyebrow: "Newsroom",
     newsTitle: "Latest News",
-    newsDescription: "A running account of what's happening across our campuses.",
+    newsDescription: "A running account of what's happening at our school.",
     viewAllNews: "View all news",
-    eventsEyebrow: "Calendar",
-    eventsTitle: "Upcoming Events",
+    galleryEyebrow: "School Life",
+    galleryTitle: "Moments from Our School",
+    viewGallery: "View full gallery",
     ctaTitle: "Considering Friendship Academy for your child?",
     ctaDescription:
-      "Book a guided campus tour or send us a message — our team responds within one business day.",
+      "Send us a message — our team responds within one business day.",
     ctaApply: "Get in Touch",
-    ctaTour: "Schedule a Tour",
     news: {
       n1: {
         title: "Friendship Academy Robotics Team Advances to National Finals",
@@ -48,11 +48,6 @@ export const homeTranslations = {
           "Over 600 parents and community members attended this year's Spring Arts Showcase, featuring student work across painting, ceramics, and photography.",
         category: "Arts",
       },
-    },
-    events: {
-      e1: { title: "Open Campus Day", location: "Main Campus" },
-      e2: { title: "Fall Term Begins", location: "All Campuses" },
-      e3: { title: "Robotics National Finals Send-off", location: "Auditorium" },
     },
   },
   am: {
@@ -75,13 +70,13 @@ export const homeTranslations = {
     newsTitle: "የቅርብ ጊዜ ዜናዎች",
     newsDescription: "በግቢዎቻችን ውስጥ እየተከናወነ ያለውን ተከታታይ ዘገባ።",
     viewAllNews: "ሁሉንም ዜናዎች ይመልከቱ",
-    eventsEyebrow: "የቀን መቁጠሪያ",
-    eventsTitle: "መጪ ዝግጅቶች",
+    galleryEyebrow: "የግቢ ህይወት",
+    galleryTitle: "ከትምህርት ቤታችን ቅጽበቶች",
+    viewGallery: "ሙሉ ማዕከለ-ስዕላት ይመልከቱ",
     ctaTitle: "ልጅዎን ወደ ወዳጅነት አካዳሚ ማስገባት እያሰቡ ነው?",
     ctaDescription:
-      "የግቢ ጉብኝት ያስይዙ ወይም መልእክት ይላኩልን — ቡድናችን በአንድ የስራ ቀን ውስጥ ምላሽ ይሰጣል።",
+      "መልእክት ይላኩልን — ቡድናችን በአንድ የስራ ቀን ውስጥ ምላሽ ይሰጣል።",
     ctaApply: "ያግኙን",
-    ctaTour: "ጉብኝት ያስይዙ",
     news: {
       n1: {
         title: "የወዳጅነት አካዳሚ ሮቦቲክስ ቡድን ወደ ሀገር አቀፍ ፍጻሜ አለፈ",
@@ -101,11 +96,6 @@ export const homeTranslations = {
           "ከ600 በላይ ወላጆች እና የማህበረሰብ አባላት በዚህ አመት የጸደይ ጥበብ ትርኢት ላይ ተገኝተዋል፣ የተማሪዎች ስራዎችን በስዕል፣ በሸክላ ስራ እና በፎቶግራፍ አሳይተዋል።",
         category: "ጥበብ",
       },
-    },
-    events: {
-      e1: { title: "ክፍት የግቢ ቀን", location: "ዋና ግቢ" },
-      e2: { title: "የበልግ ትምህርት ዘመን ይጀምራል", location: "ሁሉም ግቢዎች" },
-      e3: { title: "የሮቦቲክስ ሀገር አቀፍ ፍጻሜ መሸኛ", location: "አዳራሽ" },
     },
   },
 };

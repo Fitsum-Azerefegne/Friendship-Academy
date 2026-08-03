@@ -3,6 +3,7 @@ export const mockContent = {
   schoolName: "Friendship Academy",
   schoolNameAm: "ፍሬንድሺፕ አካዳሚ",
   tagline: "Where Curiosity Becomes Character",
+  taglineAm: "የማወቅ ጉጉት ባህሪ የሚሆንበት",
   heroImage:
     "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop",
   stats: { students: 1240, teachers: 86, yearsOpen: 47 },

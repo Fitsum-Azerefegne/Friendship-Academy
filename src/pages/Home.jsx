@@ -6,13 +6,15 @@ import {
 } from "lucide-react";
 import { getContent } from "../api/content";
 import { getNews } from "../api/news";
-import { mockEvents } from "../data/mockData";
+import { mockGallery } from "../data/mockData";
 import { homeTranslations } from "../data/homeTranslations";
+
+const galleryPreviewImages = mockGallery.slice(0, 4);
 import StatCard from "../components/ui/StatCard";
 import SectionHeading from "../components/ui/SectionHeading";
 import Spinner from "../components/ui/Spinner";
 import Reveal from "../components/ui/Reveal";
-import { formatDate, formatDateShort } from "../utils/format";
+import { formatDate } from "../utils/format";
 import { usePublicLang } from "../context/PublicLangContext";
 
 const quickLinkIcons = [Newspaper, BookOpen, ImageIcon, MapPin];
@@ -62,14 +64,14 @@ export default function Home() {
                 className="mt-6 max-w-3xl font-display text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl animate-fade-in-up"
                 style={{ animationDelay: "80ms" }}
               >
-                {t.schoolNameDisplay}
+                {lang === "am" ? (content.schoolNameAm || t.schoolNameDisplay) : t.schoolNameDisplay}
               </h1>
               <p
                 key={`tagline-${lang}`}
                 className="mt-5 max-w-xl text-lg text-white/70 animate-fade-in-up"
                 style={{ animationDelay: "160ms" }}
               >
-                {t.tagline}
+                {lang === "am" ? (content.taglineAm || t.tagline) : t.tagline}
               </p>
               <div
                 key={`buttons-${lang}`}
@@ -169,35 +171,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Upcoming Events + CTA */}
+      {/* Gallery preview + CTA */}
       <section className="bg-plum-50">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">
+            {/* Photo strip */}
             <Reveal className="lg:col-span-3">
-              <SectionHeading eyebrow={t.eventsEyebrow} title={t.eventsTitle} />
-              <ul className="mt-8 divide-y divide-plum-100 rounded-2xl border border-plum-100 bg-white">
-                {mockEvents.slice(0, 3).map((ev) => {
-                  const translated = t.events[ev.id];
-                  return (
-                    <li key={ev.id} className="flex items-center gap-4 p-5 transition-colors hover:bg-plum-50/60">
-                      <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-plum-800 text-white">
-                        <span className="text-[10px] uppercase tracking-wide opacity-70">
-                          {formatDateShort(ev.date).month}
-                        </span>
-                        <span className="font-display text-lg font-semibold leading-none">
-                          {formatDateShort(ev.date).day}
-                        </span>
+              <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
+                <SectionHeading eyebrow={t.galleryEyebrow} title={t.galleryTitle} />
+                <Link
+                  to="/gallery"
+                  className="group inline-flex items-center gap-1.5 text-sm font-semibold text-plum-800 hover:text-plum-600 transition-colors"
+                >
+                  {t.viewGallery} <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
+              <div className="grid grid-cols-2 gap-2.5">
+                {galleryPreviewImages.map((img, i) => (
+                  <Reveal key={img.id} delay={i * 70}>
+                    <Link
+                      to="/gallery"
+                      className="group relative block aspect-[4/3] overflow-hidden rounded-2xl bg-plum-100"
+                    >
+                      <img
+                        src={img.image}
+                        alt={img.caption}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-plum-950/0 transition-colors duration-300 group-hover:bg-plum-950/30 rounded-2xl" />
+                      <div className="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="text-xs font-medium text-white drop-shadow">{img.caption}</span>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-medium text-plum-900 truncate">{translated?.title ?? ev.title}</p>
-                        <p className="text-sm text-ink-950/50">{ev.time} · {translated?.location ?? ev.location}</p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
             </Reveal>
 
+            {/* CTA card */}
             <Reveal delay={150} className="lg:col-span-2 flex flex-col justify-center rounded-2xl bg-plum-950 p-6 sm:p-8 text-white">
               <h3 className="font-display text-2xl font-semibold">{t.ctaTitle}</h3>
               <p className="mt-3 text-sm text-white/60">{t.ctaDescription}</p>
@@ -207,12 +218,6 @@ export default function Home() {
                   className="lift-hover inline-flex items-center justify-center gap-2 rounded-full bg-brass-500 px-5 py-2.5 text-sm font-semibold text-ink-950 hover:bg-brass-400 transition-colors"
                 >
                   {t.ctaApply}
-                </Link>
-                <Link
-                  to="/contact"
-                  className="lift-hover inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
-                >
-                  {t.ctaTour}
                 </Link>
               </div>
             </Reveal>

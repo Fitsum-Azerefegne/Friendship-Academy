@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { Menu, X, ShieldCheck } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { usePublicLang } from "../../context/PublicLangContext";
 
 const schoolName = { en: "Friendship Academy", am: "ፍሬንድሺፕ አካዳሚ" };
@@ -79,12 +79,6 @@ export default function Navbar() {
         {/* Desktop right actions */}
         <div className="hidden items-center gap-2 lg:flex">
           {langToggle}
-          <Link to="/admin" className="lift-hover inline-flex items-center gap-1.5 rounded-full border border-plum-200 px-3.5 py-2 text-sm font-medium text-plum-800 hover:bg-plum-50 transition-colors">
-            <ShieldCheck className="h-4 w-4" /> {t.admin}
-          </Link>
-          <Link to="/contact" className="lift-hover rounded-full bg-plum-800 px-4 py-2 text-sm font-semibold text-white hover:bg-plum-700 hover:shadow-lg hover:shadow-plum-900/20 transition-colors">
-            {t.contactUs}
-          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -105,8 +99,7 @@ export default function Navbar() {
                 {l.label[lang]}
               </NavLink>
             ))}
-            <Link to="/admin" className="rounded-lg px-3 py-2.5 text-sm font-medium text-plum-800">{t.adminLogin}</Link>
-            <Link to="/contact" className="mt-2 rounded-full bg-plum-800 px-4 py-2.5 text-center text-sm font-semibold text-white">{t.contactUs}</Link>
+
           </nav>
         </div>
       )}

@@ -7,7 +7,9 @@ function fromRow(row) {
   if (!row) return mockContent;
   return {
     schoolName: row.school_name,
+    schoolNameAm: row.school_name_am,
     tagline: row.tagline,
+    taglineAm: row.tagline_am,
     heroImage: row.hero_image,
     stats: {
       students: row.stats_students,
@@ -47,7 +49,9 @@ function toRow(content) {
   return {
     id: 1,
     school_name: content.schoolName,
+    school_name_am: content.schoolNameAm,
     tagline: content.tagline,
+    tagline_am: content.taglineAm,
     hero_image: content.heroImage,
     stats_students: content.stats?.students,
     stats_teachers: content.stats?.teachers,

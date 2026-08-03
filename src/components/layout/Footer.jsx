@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail } from "lucide-react";
-import Crest from "../ui/Crest";
-import { FacebookIcon, InstagramIcon, TwitterIcon, YoutubeIcon } from "../ui/SocialIcons";
+import { MapPin, Phone, Mail, Send } from "lucide-react";
 import { mockContent } from "../../data/mockData";
 import { usePublicLang } from "../../context/PublicLangContext";
 
@@ -12,7 +10,6 @@ const quickLinksData = {
     { to: "/news", label: "News" },
     { to: "/gallery", label: "Gallery" },
     { to: "/staff", label: "Staff Directory" },
-    { to: "/contact", label: "Contact" },
   ],
   am: [
     { to: "/about", label: "ስለ እኛ" },
@@ -20,21 +17,13 @@ const quickLinksData = {
     { to: "/news", label: "ዜናዎች" },
     { to: "/gallery", label: "ማዕከለ-ስዕላት" },
     { to: "/staff", label: "የሰራተኞች ማውጫ" },
-    { to: "/contact", label: "አግኙን" },
   ],
 };
 
 const footerText = {
-  en: { quickLinks: "Quick Links", contact: "Contact", officeHours: "Office Hours", hours: ["Monday – Friday: 7:30 AM – 4:30 PM", "Saturday: 9:00 AM – 12:00 PM", "Sunday: Closed"], rights: "All rights reserved.", built: "Built with care for our school community.", copyright: "© 2026 Friendship Academy." },
-  am: { quickLinks: "ፈጣን አገናኞች", contact: "አድራሻ", officeHours: "የቢሮ ሰዓታት", hours: ["ሰኞ – አርብ: 7:30 ጠ.ቀ – 4:30 ከ.ቀ", "ቅዳሜ: 9:00 ጠ.ቀ – 12:00 ቀ", "እሁድ: ዝግ"], rights: "መብቱ በሕግ የተጠበቀ ነው።", built: "ለትምህርት ቤታችን ማህበረሰብ በፍቅር ተሰርቷል።", copyright: "© ፳፻፲፰ ወዳጅነት አካዳሚ።" },
+  en: { quickLinks: "Quick Links", contact: "Contact", officeHours: "Office Hours", hours: ["Monday – Friday: 7:30 AM – 4:30 PM", "Saturday: 9:00 AM – 12:00 PM", "Sunday: Closed"], built: "Built with care for our kindergarten community." },
+  am: { quickLinks: "ፈጣን አገናኞች", contact: "አድራሻ", officeHours: "የቢሮ ሰዓታት", hours: ["ሰኞ – አርብ: 7:30 ጠ.ቀ – 4:30 ከ.ቀ", "ቅዳሜ: 9:00 ጠ.ቀ – 12:00 ቀ", "እሁድ: ዝግ"], built: "ለህፃናት ትምህርት ቤታችን ማህበረሰብ በፍቅር ተሰርቷል።" },
 };
-
-const socialIcons = [
-  { icon: FacebookIcon, href: mockContent.socials.facebook, label: "Facebook" },
-  { icon: InstagramIcon, href: mockContent.socials.instagram, label: "Instagram" },
-  { icon: TwitterIcon, href: mockContent.socials.twitter, label: "Twitter" },
-  { icon: YoutubeIcon, href: mockContent.socials.youtube, label: "YouTube" },
-];
 
 export default function Footer() {
   const { lang } = usePublicLang();
@@ -47,24 +36,25 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5">
               <img src="/Logo.png" alt="Friendship Academy logo" className="h-9 w-9 rounded-full object-cover" />
-              <p className="font-display text-lg font-semibold">{mockContent.schoolName}</p>
+              <p className="font-display text-lg font-semibold">
+                {lang === "am" ? "ፍሬንድሺፕ አካዳሚ" : "Friendship Academy"}
+              </p>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-white/70 max-w-xs">
-              {mockContent.tagline} — {lang === "am" ? "ከ1979 ጀምሮ ጉጉ፣ ሥነ ምግባር ያላቸው ተማሪዎችን ማስተማር።" : "educating curious, principled learners since 1979."}
+              {lang === "am"
+                ? "የማወቅ ጉጉት ባህሪ የሚሆንበት — ከ1979 ጀምሮ ጉጉ፣ ሥነ ምግባር ያላቸው ህፃናትን ማስተማር።"
+                : "Where Curiosity Becomes Character — nurturing curious, principled children since 1979."}
             </p>
             <div className="mt-5 flex gap-2">
-              {socialIcons.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+              <a
+                href="https://t.me/friendship_academy"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Telegram"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+              >
+                <Send className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
@@ -109,7 +99,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/20 pt-6 sm:flex-row">
           <p className="text-xs text-white/50">
-            {ft.copyright} {ft.rights}
+            © 2026 Friendship Academy. All rights reserved.
           </p>
           <p className="text-xs text-white/50">{ft.built}</p>
         </div>

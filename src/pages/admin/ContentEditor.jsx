@@ -32,7 +32,7 @@ export default function ContentEditor() {
   }
 
   function updateStat(field, value) {
-    setForm((f) => ({ ...f, stats: { ...f.stats, [field]: Number(value) || 0 } }));
+    setForm((f) => ({ ...f, stats: { ...f.stats, [field]: value === "" ? "" : Number(value) || 0 } }));
   }
 
   function updateValue(lang, index, text) {
@@ -71,6 +71,11 @@ export default function ContentEditor() {
     setSaving(true);
     try {
       const payload = { ...form };
+      payload.stats = {
+        students: Number(form.stats.students) || 0,
+        teachers: Number(form.stats.teachers) || 0,
+        yearsOpen: Number(form.stats.yearsOpen) || 0,
+      };
       if (payload.heroImageFile) {
         payload.heroImage = await uploadImage(payload.heroImageFile, "hero");
       }
@@ -96,20 +101,20 @@ export default function ContentEditor() {
             <h2 className="font-display text-lg font-semibold text-plum-900">Hero Section</h2>
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label className="text-sm font-medium text-ink-950/70">School Name</label>
-                <input
-                  value={form.schoolName}
-                  onChange={(e) => update("schoolName", e.target.value)}
-                  className={inputClass}
-                />
+                <label className="text-sm font-medium text-ink-950/70">School Name (English)</label>
+                <input value={form.schoolName} onChange={(e) => update("schoolName", e.target.value)} className={inputClass} />
               </div>
               <div>
-                <label className="text-sm font-medium text-ink-950/70">Tagline</label>
-                <input
-                  value={form.tagline}
-                  onChange={(e) => update("tagline", e.target.value)}
-                  className={inputClass}
-                />
+                <label className="text-sm font-medium text-ink-950/70">Tagline (English)</label>
+                <input value={form.tagline} onChange={(e) => update("tagline", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">የትምህርት ቤቱ ስም (አማርኛ)</label>
+                <input value={form.schoolNameAm || ""} onChange={(e) => update("schoolNameAm", e.target.value)} className={inputClass} placeholder="ፍሬንድሺፕ አካዳሚ" />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">መሪ ቃል (አማርኛ)</label>
+                <input value={form.taglineAm || ""} onChange={(e) => update("taglineAm", e.target.value)} className={inputClass} placeholder="የማወቅ ጉጉት ባህሪ የሚሆንበት" />
               </div>
             </div>
           </div>
@@ -198,8 +203,10 @@ export default function ContentEditor() {
               <div>
                 <label className="text-sm font-medium text-ink-950/70">Students</label>
                 <input
-                  type="number"
-                  value={form.stats.students}
+                  type="text"
+                  inputMode="numeric"
+                  value={form.stats.students === 0 ? "" : form.stats.students}
+                  placeholder="0"
                   onChange={(e) => updateStat("students", e.target.value)}
                   className={inputClass}
                 />
@@ -207,8 +214,10 @@ export default function ContentEditor() {
               <div>
                 <label className="text-sm font-medium text-ink-950/70">Teachers</label>
                 <input
-                  type="number"
-                  value={form.stats.teachers}
+                  type="text"
+                  inputMode="numeric"
+                  value={form.stats.teachers === 0 ? "" : form.stats.teachers}
+                  placeholder="0"
                   onChange={(e) => updateStat("teachers", e.target.value)}
                   className={inputClass}
                 />
@@ -216,8 +225,10 @@ export default function ContentEditor() {
               <div>
                 <label className="text-sm font-medium text-ink-950/70">Years Open</label>
                 <input
-                  type="number"
-                  value={form.stats.yearsOpen}
+                  type="text"
+                  inputMode="numeric"
+                  value={form.stats.yearsOpen === 0 ? "" : form.stats.yearsOpen}
+                  placeholder="0"
                   onChange={(e) => updateStat("yearsOpen", e.target.value)}
                   className={inputClass}
                 />
