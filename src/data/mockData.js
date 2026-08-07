@@ -45,11 +45,14 @@ export const mockContent = {
     "ፍሬንድሺፕ አካዳሚ በ1979 ዓ.ም. ጥብቅ ትምህርትና እውነተኛ ደግነት አብረው ሊኖሩ ይችላሉ ብለው ባመኑ ጥቂት አስተማሪዎች ተቋቋመ። ትምህርት ቤቱ 62 ተማሪዎችን ይዞ ጀምሮ፣ ዛሬ ሶስት ካምፓሶች ያሉት ትምህርት ቤት ሆኗል — ነገር ግን የመጀመሪያ እምነቱን አልተወም፡ የትምህርት ቤቱ ዋና ሥራ እያንዳንዱን ልጅ በደንብ ማወቅ ነው።",
   principal: {
     name: "Dr. Eleanor Marsh",
+    nameAm: "",
     title: "Principal",
+    titleAm: "",
     photo:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop",
     message:
       "Every September, I remind our new families of the same thing: we are not in the business of producing a single kind of student. We're in the business of paying close attention to each one. Thank you for trusting us with that work.",
+    messageAm: "",
   },
   address: "48 Cathedral Road, Riverside District, Lyford, LY4 2QP",
   phone: "+1 (555) 213-4470",

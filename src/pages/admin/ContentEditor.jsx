@@ -16,13 +16,16 @@ export default function ContentEditor() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [heroPreview, setHeroPreview] = useState(null);
+  const [principalPreview, setPrincipalPreview] = useState(null);
   const fileInputRef = useRef(null);
+  const principalFileRef = useRef(null);
 
   useEffect(() => {
     (async () => {
       const data = await getContent();
       setForm(data);
       setHeroPreview(data.heroImage);
+      setPrincipalPreview(data.principal?.photo);
       setLoading(false);
     })();
   }, []);
@@ -58,12 +61,23 @@ export default function ContentEditor() {
     });
   }
 
+  function updatePrincipal(field, value) {
+    setForm((f) => ({ ...f, principal: { ...f.principal, [field]: value } }));
+  }
+
   function handleHeroChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
     setHeroPreview(url);
     setForm((f) => ({ ...f, heroImageFile: file }));
+  }
+
+  function handlePrincipalPhotoChange(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setPrincipalPreview(URL.createObjectURL(file));
+    setForm((f) => ({ ...f, principalPhotoFile: file }));
   }
 
   async function handleSave(e) {
@@ -76,6 +90,10 @@ export default function ContentEditor() {
         teachers: Number(form.stats.teachers) || 0,
         yearsOpen: Number(form.stats.yearsOpen) || 0,
       };
+      if (payload.principalPhotoFile) {
+        payload.principal = { ...payload.principal, photo: await uploadImage(payload.principalPhotoFile, "principal") };
+      }
+      delete payload.principalPhotoFile;
       if (payload.heroImageFile) {
         payload.heroImage = await uploadImage(payload.heroImageFile, "hero");
       }
@@ -198,7 +216,51 @@ export default function ContentEditor() {
           </div>
 
           <div className="rounded-2xl border border-plum-100 bg-white p-6">
-            <h2 className="font-display text-lg font-semibold text-plum-900">Quick Stats</h2>
+            <h2 className="font-display text-lg font-semibold text-plum-900">Principal's Message</h2>
+            <div className="mt-4 space-y-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="text-sm font-medium text-ink-950/70">Name (English)</label>
+                  <input value={form.principal?.name || ""} onChange={(e) => updatePrincipal("name", e.target.value)} className={inputClass} />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-ink-950/70">Title (English)</label>
+                  <input value={form.principal?.title || ""} onChange={(e) => updatePrincipal("title", e.target.value)} className={inputClass} />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-ink-950/70">ስም (አማርኛ)</label>
+                  <input value={form.principal?.nameAm || ""} onChange={(e) => updatePrincipal("nameAm", e.target.value)} className={inputClass} />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-ink-950/70">ምድብ (አማርኛ)</label>
+                  <input value={form.principal?.titleAm || ""} onChange={(e) => updatePrincipal("titleAm", e.target.value)} className={inputClass} />
+                </div>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">Message (English)</label>
+                <textarea rows={4} value={form.principal?.message || ""} onChange={(e) => updatePrincipal("message", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">መልእክት (አማርኛ)</label>
+                <textarea rows={4} value={form.principal?.messageAm || ""} onChange={(e) => updatePrincipal("messageAm", e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-ink-950/70">Photo</label>
+                <div className="mt-1.5 flex items-center gap-4">
+                  {principalPreview && (
+                    <img src={principalPreview} alt="Principal" className="h-16 w-16 rounded-full object-cover border border-plum-100" />
+                  )}
+                  <button type="button" onClick={() => principalFileRef.current?.click()}
+                    className="flex items-center gap-2 rounded-lg border border-dashed border-plum-300 px-4 py-2.5 text-sm font-medium text-plum-700 hover:bg-plum-50">
+                    <ImagePlus className="h-4 w-4" /> Upload Photo
+                  </button>
+                  <input ref={principalFileRef} type="file" accept="image/*" className="hidden" onChange={handlePrincipalPhotoChange} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-plum-100 bg-white p-6">
             <div className="mt-4 grid grid-cols-3 gap-3 sm:gap-4">
               <div>
                 <label className="text-sm font-medium text-ink-950/70">Students</label>

@@ -141,10 +141,14 @@ export default function About() {
             />
             <div>
               <p className="font-display text-xl leading-relaxed text-plum-900 italic">
-                "{content.principal.message}"
+                "{lang === "am" ? (content.principal.messageAm || content.principal.message) : content.principal.message}"
               </p>
-              <p className="mt-6 font-semibold text-ink-950">{content.principal.name}</p>
-              <p className="text-sm text-ink-950/50">{content.principal.title}</p>
+              <p className="mt-6 font-semibold text-ink-950">
+                {lang === "am" ? (content.principal.nameAm || content.principal.name) : content.principal.name}
+              </p>
+              <p className="text-sm text-ink-950/50">
+                {lang === "am" ? (content.principal.titleAm || content.principal.title) : content.principal.title}
+              </p>
             </div>
           </Reveal>
         </div>
