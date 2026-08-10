@@ -1,18 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { getNews } from "../api/news";
 import PageHero from "../components/ui/PageHero";
 import Spinner from "../components/ui/Spinner";
 import Pagination from "../components/ui/Pagination";
+import Reveal from "../components/ui/Reveal";
 import { formatDate } from "../utils/format";
 import { usePublicLang } from "../context/PublicLangContext";
 
 const T = {
-  en: { eyebrow: "Newsroom", title: "School News", desc: "Updates, achievements, and stories from across our campuses.", all: "All", empty: "No articles in this category yet." },
-  am: { eyebrow: "የዜና ክፍል", title: "የትምህርት ቤት ዜናዎች", desc: "ከግቢዎቻችን ዝማኔዎች፣ ስኬቶች እና ታሪኮች።", all: "ሁሉም", empty: "በዚህ ምድብ ምንም ጽሁፎች የሉም።" },
+  en: { eyebrow: "Newsroom", title: "School News", desc: "Updates, achievements, and stories from across our campuses.", all: "All", empty: "No articles in this category yet.", featured: "Latest Story" },
+  am: { eyebrow: "የዜና ክፍል", title: "የትምህርት ቤት ዜናዎች", desc: "ከግቢዎቻችን ዝማኔዎች፣ ስኬቶች እና ታሪኮች።", all: "ሁሉም", empty: "በዚህ ምድብ ምንም ጽሁፎች የሉም።", featured: "የቅርብ ጊዜ ዜና" },
 };
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 6;
 
 export default function News() {
   const { lang } = usePublicLang();
@@ -30,20 +32,25 @@ export default function News() {
     })();
   }, []);
 
-  // reset to page 1 when lang changes
   useEffect(() => { setPage(1); }, [lang]);
 
   const categories = useMemo(() => [t.all, ...Array.from(new Set(news.map((n) => n.category)))], [news, t.all]);
   const filtered = useMemo(() => (category === "All" || category === t.all ? news : news.filter((n) => n.category === category)), [news, category, t.all]);
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const pageItems = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  // Split featured (first) from the rest
+  const featured = filtered[0] ?? null;
+  const rest = filtered.slice(1);
+  const totalPages = Math.max(1, Math.ceil(rest.length / PAGE_SIZE));
+  const pageItems = rest.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   function changeCategory(cat) { setCategory(cat); setPage(1); }
 
   return (
     <div>
       <PageHero eyebrow={t.eyebrow} title={t.title} description={t.desc} />
-      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+
+        {/* Category chips */}
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button key={cat} onClick={() => changeCategory(cat)}
@@ -54,29 +61,65 @@ export default function News() {
         </div>
 
         {loading ? <Spinner size="lg" label={lang === "am" ? "ዜናዎችን በመጫን ላይ…" : "Loading news…"} />
-          : pageItems.length === 0 ? <p className="mt-12 text-center text-ink-950/50">{t.empty}</p>
+          : filtered.length === 0 ? <p className="mt-12 text-center text-ink-950/50">{t.empty}</p>
           : (
-            <div key={`${category}-${page}-${lang}`} className="mt-8 divide-y divide-plum-100">
-              {pageItems.map((item, i) => (
-                <Link key={item.id} to={`/news/${item.id}`}
-                  className="group flex flex-col gap-5 py-7 sm:flex-row animate-fade-in-up"
-                  style={{ animationDelay: `${i * 70}ms` }}>
-                  <div className="aspect-[16/10] w-full shrink-0 overflow-hidden rounded-xl bg-plum-100 sm:w-56">
-                    <img src={item.image} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-center gap-3 text-xs text-ink-950/40">
-                      <span className="rounded-full bg-plum-50 px-2.5 py-1 font-semibold uppercase tracking-wide text-plum-700">{item.category}</span>
-                      <span>{formatDate(item.date)}</span>
+            <div key={`${category}-${page}-${lang}`}>
+              {/* Featured article */}
+              {featured && (
+                <Reveal className="mt-8">
+                  <Link to={`/news/${featured.id}`}
+                    className="lift-hover group relative flex flex-col overflow-hidden rounded-3xl bg-plum-950 shadow-xl shadow-plum-900/20 sm:flex-row sm:h-72">
+                    <div className="absolute inset-0">
+                      <img src={featured.image} alt="" className="h-full w-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-plum-950/95 via-plum-950/70 to-transparent" />
                     </div>
-                    <h3 className="mt-2.5 font-display text-xl font-semibold text-plum-900 transition-colors group-hover:text-plum-700">{item.title}</h3>
-                    <p className="mt-2 text-sm text-ink-950/55 line-clamp-2">{item.excerpt}</p>
-                  </div>
-                </Link>
-              ))}
+                    <div className="relative flex flex-col justify-end p-6 sm:p-8 sm:max-w-lg">
+                      <span className="w-fit rounded-full bg-brass-500 px-3 py-1 text-[11px] font-semibold text-ink-950">{featured.category}</span>
+                      <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-white sm:text-3xl group-hover:text-brass-300 transition-colors">
+                        {featured.title}
+                      </h2>
+                      <p className="mt-2 text-sm text-white/60 line-clamp-2">{featured.excerpt}</p>
+                      <div className="mt-4 flex items-center gap-2 text-xs text-white/40">
+                        <span>{formatDate(featured.date)}</span>
+                        <span>·</span>
+                        <span>{featured.author}</span>
+                      </div>
+                    </div>
+                    <div className="absolute right-6 top-6 flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                      {t.featured} <ArrowUpRight className="h-3.5 w-3.5" />
+                    </div>
+                  </Link>
+                </Reveal>
+              )}
+
+              {/* Card grid */}
+              {pageItems.length > 0 && (
+                <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {pageItems.map((item, i) => (
+                    <Reveal key={item.id} delay={i * 60}>
+                      <Link to={`/news/${item.id}`}
+                        className="lift-hover group flex h-full flex-col overflow-hidden rounded-2xl border border-plum-100 bg-white shadow-sm hover:shadow-lg hover:shadow-plum-900/10">
+                        <div className="aspect-[16/10] overflow-hidden bg-plum-100">
+                          <img src={item.image} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <div className="flex flex-1 flex-col gap-2 p-5">
+                          <div className="flex items-center gap-2">
+                            <span className="rounded-full bg-plum-50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-plum-700">{item.category}</span>
+                            <span className="text-xs text-ink-950/35">{formatDate(item.date)}</span>
+                          </div>
+                          <h3 className="font-display text-base font-semibold text-plum-900 leading-snug line-clamp-2 group-hover:text-plum-700 transition-colors">{item.title}</h3>
+                          <p className="text-sm text-ink-950/55 line-clamp-2 flex-1">{item.excerpt}</p>
+                          <p className="mt-1 text-xs text-ink-950/35">{item.author}</p>
+                        </div>
+                      </Link>
+                    </Reveal>
+                  ))}
+                </div>
+              )}
+
+              <div className="mt-8"><Pagination page={page} totalPages={totalPages} onChange={setPage} /></div>
             </div>
           )}
-        <div className="mt-6"><Pagination page={page} totalPages={totalPages} onChange={setPage} /></div>
       </section>
     </div>
   );

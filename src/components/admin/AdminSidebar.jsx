@@ -92,10 +92,10 @@ export default function AdminSidebar({ open, onClose }) {
               end={end}
               onClick={onClose}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-white/10 text-white"
-                    : "text-white/55 hover:bg-white/5 hover:text-white"
+                    ? "bg-plum-700 text-white shadow-sm"
+                    : "text-white/60 hover:bg-white/8 hover:text-white"
                 }`
               }
             >

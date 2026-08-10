@@ -133,11 +133,11 @@ export default function About() {
           <Reveal>
             <SectionHeading eyebrow={l.leadership} title={l.principalMsg} align="center" />
           </Reveal>
-          <Reveal delay={100} className="mt-10 grid grid-cols-1 items-center gap-8 sm:gap-10 rounded-2xl border border-plum-100 bg-white p-6 shadow-sm shadow-plum-900/5 sm:p-10 md:grid-cols-[280px_1fr]">
+          <Reveal delay={100} className="mt-10 grid grid-cols-1 items-center gap-8 sm:gap-10 rounded-2xl border border-plum-100 bg-white p-6 shadow-sm shadow-plum-900/5 sm:p-10 md:grid-cols-[200px_1fr]">
             <img
               src={content.principal.photo}
               alt={content.principal.name}
-              className="mx-auto h-56 w-56 rounded-2xl object-cover md:h-full md:w-full"
+              className="mx-auto h-48 w-48 rounded-2xl object-cover md:h-full md:w-full"
             />
             <div>
               <p className="font-display text-xl leading-relaxed text-plum-900 italic">

@@ -87,12 +87,14 @@ export default function Dashboard() {
           </div>
           <ul className="mt-4 divide-y divide-plum-100">
             {recentMessages.map((m) => (
-              <li key={m.id} className="flex items-center justify-between gap-3 py-3 transition-colors hover:bg-plum-50/60">
-                <div className="min-w-0">
-                  <p className="truncate text-sm text-ink-950/70">{m.subject}</p>
-                  <p className="truncate text-xs text-ink-950/35">{m.name}</p>
+              <li key={m.id} className="flex items-center justify-between gap-3 py-3">
+                <div className="min-w-0 flex items-center gap-2.5">
+                  {!m.read && <span className="h-2 w-2 shrink-0 rounded-full bg-brass-500" aria-label="Unread" />}
+                  <div className="min-w-0">
+                    <p className={`truncate text-sm ${!m.read ? "font-semibold text-plum-900" : "text-ink-950/70"}`}>{m.subject}</p>
+                    <p className="truncate text-xs text-ink-950/35">{m.name}</p>
+                  </div>
                 </div>
-                {!m.read && <span className="shrink-0 h-2 w-2 rounded-full bg-brass-500" aria-label="Unread" />}
               </li>
             ))}
           </ul>

@@ -46,11 +46,16 @@ export default function Academics() {
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {data.gradeLevels.map((g, i) => (
             <Reveal key={g.range} delay={i * 80}>
-              <div className="lift-hover rounded-2xl border border-plum-100 bg-white p-6 hover:shadow-md hover:shadow-plum-900/10">
-                <span className="font-display text-3xl font-semibold text-plum-200">{String(i + 1).padStart(2, "0")}</span>
-                <p className="mt-3 font-display text-lg font-semibold text-plum-900">{g.range}</p>
-                <p className="text-sm text-brass-600 font-medium">{g.grades}</p>
-                <p className="mt-2 text-sm text-ink-950/55 leading-relaxed">{g.focus}</p>
+              <div className="lift-hover relative overflow-hidden rounded-2xl border border-plum-100 bg-white p-6 hover:shadow-md hover:shadow-plum-900/10">
+                <span className="absolute right-4 top-3 font-display text-5xl font-bold text-plum-50 select-none">{String(i + 1).padStart(2, "0")}</span>
+                <div className="relative">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-plum-800 text-white mb-4">
+                    <span className="text-sm font-bold">{String(i + 1)}</span>
+                  </div>
+                  <p className="font-display text-lg font-semibold text-plum-900">{g.range}</p>
+                  <p className="text-sm text-brass-600 font-medium">{g.grades}</p>
+                  <p className="mt-2 text-sm text-ink-950/55 leading-relaxed">{g.focus}</p>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -90,7 +95,7 @@ export default function Academics() {
           </Reveal>
           <Reveal delay={100} className="mt-8 divide-y divide-white/10 rounded-2xl border border-white/10">
             {data.calendar.map((term) => (
-              <div key={term.term} className="flex flex-wrap items-center justify-between gap-2 p-5 transition-colors hover:bg-white/5">
+              <div key={term.term} className="flex flex-col gap-1 p-5 transition-colors hover:bg-white/5 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
                 <p className="font-medium text-white">{term.term}</p>
                 <p className="text-sm text-white/55">{formatDate(term.start)} — {formatDate(term.end)}</p>
               </div>

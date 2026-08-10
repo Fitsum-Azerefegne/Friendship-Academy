@@ -61,9 +61,9 @@ export default function Contact() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-5">
           <Reveal className="lg:col-span-2 space-y-6">
             <div className="space-y-4 rounded-2xl border border-plum-100 bg-white p-6">
-              <div className="flex gap-3"><MapPin className="h-5 w-5 shrink-0 text-plum-700" /><p className="text-sm text-ink-950/70">{mockContent.address}</p></div>
-              <div className="flex gap-3"><Phone className="h-5 w-5 shrink-0 text-plum-700" /><a href={`tel:${mockContent.phone}`} className="text-sm text-ink-950/70 hover:text-plum-700">{mockContent.phone}</a></div>
-              <div className="flex gap-3"><Mail className="h-5 w-5 shrink-0 text-plum-700" /><a href={`mailto:${mockContent.email}`} className="text-sm text-ink-950/70 hover:text-plum-700">{mockContent.email}</a></div>
+              <div className="flex gap-3"><MapPin className="h-5 w-5 shrink-0 text-plum-700" /><p className="text-sm text-ink-950/70 min-w-0">{mockContent.address}</p></div>
+              <div className="flex gap-3"><Phone className="h-5 w-5 shrink-0 text-plum-700" /><a href={`tel:${mockContent.phone}`} className="text-sm text-ink-950/70 hover:text-plum-700 min-w-0">{mockContent.phone}</a></div>
+              <div className="flex gap-3"><Mail className="h-5 w-5 shrink-0 text-plum-700" /><a href={`mailto:${mockContent.email}`} className="text-sm text-ink-950/70 hover:text-plum-700 min-w-0 break-all">{mockContent.email}</a></div>
             </div>
             <div className="overflow-hidden rounded-2xl border border-plum-100">
               <iframe title="School location map" src={mockContent.mapEmbedUrl} className="h-72 w-full" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />

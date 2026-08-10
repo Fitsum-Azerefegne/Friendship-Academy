@@ -12,7 +12,7 @@ const CATS = {
 const CAT_MAP = { "ሁሉም": "All", "ዝግጅቶች": "Events", "ስፖርት": "Sports", "ግቢ": "Campus", "ምረቃ": "Graduation", "ጥበብ": "Arts" };
 
 const T = {
-  en: { eyebrow: "Gallery", title: "Campus Life in Pictures", desc: "Moments from our classrooms, courts, stages, and quads — organized by event.", morePhotos: "More Photos", backToGallery: "Back to Gallery", empty: "No photos in this category yet.", loading: "Loading gallery…", photos: "photos", photo: "photo" },
+  en: { eyebrow: "Gallery", title: "School Life in Pictures", desc: "Moments from our classrooms, courts, stages, and quads — organized by event.", morePhotos: "More Photos", backToGallery: "Back to Gallery", empty: "No photos in this category yet.", loading: "Loading gallery…", photos: "photos", photo: "photo" },
   am: { eyebrow: "ማዕከለ-ስዕላት", title: "የግቢ ህይወት በስዕሎች", desc: "ከክፍሎቻችን፣ ሜዳዎቻችን፣ መድረኮቻችን እና ግቢዎቻችን ጊዜያት — በዝግጅት የተደራጁ።", morePhotos: "ተጨማሪ ፎቶዎች", backToGallery: "ወደ ማዕከለ-ስዕላት ተመለስ", empty: "በዚህ ምድብ ምንም ፎቶዎች የሉም።", loading: "ማዕከለ-ስዕላት በመጫን ላይ…", photos: "ፎቶዎች", photo: "ፎቶ" },
 };
 

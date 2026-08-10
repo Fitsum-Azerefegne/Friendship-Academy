@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Users, GraduationCap, CalendarClock, ArrowRight, ArrowUpRight,
-  BookOpen, Image as ImageIcon, Newspaper, MapPin,
+  BookOpen, Image as ImageIcon, Newspaper, MapPin, Phone, Mail, MessageCircle,
 } from "lucide-react";
+import { mockContent } from "../data/mockData";
 import { getContent } from "../api/content";
 import { getNews } from "../api/news";
 import { mockGallery } from "../data/mockData";
@@ -93,7 +94,7 @@ export default function Home() {
               </div>
               <div
                 key={`stats-${lang}`}
-                className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:max-w-xl animate-fade-in-up"
+                className="mt-14 grid grid-cols-3 gap-3 sm:max-w-xl animate-fade-in-up"
                 style={{ animationDelay: "320ms" }}
               >
                 <StatCard icon={Users} value={content.stats.students.toLocaleString()} label={t.statsStudents} tone="dark" />
@@ -209,16 +210,43 @@ export default function Home() {
             </Reveal>
 
             {/* CTA card */}
-            <Reveal delay={150} className="lg:col-span-2 flex flex-col justify-center rounded-2xl bg-plum-950 p-6 sm:p-8 text-white">
-              <h3 className="font-display text-2xl font-semibold">{t.ctaTitle}</h3>
-              <p className="mt-3 text-sm text-white/60">{t.ctaDescription}</p>
-              <div className="mt-6 flex flex-col gap-2.5">
-                <Link
-                  to="/contact"
-                  className="lift-hover inline-flex items-center justify-center gap-2 rounded-full bg-brass-500 px-5 py-2.5 text-sm font-semibold text-ink-950 hover:bg-brass-400 transition-colors"
-                >
-                  {t.ctaApply}
-                </Link>
+            <Reveal delay={150} className="lg:col-span-2 flex flex-col justify-center">
+              <div className="rounded-2xl bg-plum-900 p-6 sm:p-8 text-white">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brass-500/20 text-brass-300 mb-5">
+                  <MessageCircle className="h-5 w-5" />
+                </div>
+                <h3 className="font-display text-2xl font-semibold leading-snug">{t.ctaTitle}</h3>
+                <p className="mt-3 text-sm text-white/60 leading-relaxed">{t.ctaDescription}</p>
+
+                <ul className="mt-6 space-y-3">
+                  <li className="flex items-center gap-3 text-sm text-white/70">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10"><MapPin className="h-4 w-4" /></span>
+                    {mockContent.address}
+                  </li>
+                  <li className="flex items-center gap-3 text-sm">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10"><Phone className="h-4 w-4" /></span>
+                    <a href={`tel:${mockContent.phone}`} className="text-white/70 hover:text-white transition-colors">{mockContent.phone}</a>
+                  </li>
+                  <li className="flex items-center gap-3 text-sm">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/10"><Mail className="h-4 w-4" /></span>
+                    <a href={`mailto:${mockContent.email}`} className="text-white/70 hover:text-white transition-colors min-w-0 break-all">{mockContent.email}</a>
+                  </li>
+                </ul>
+
+                <div className="mt-7 flex flex-col gap-2.5 sm:flex-row lg:flex-col">
+                  <Link
+                    to="/contact"
+                    className="lift-hover inline-flex items-center justify-center gap-2 rounded-full bg-brass-500 px-5 py-2.5 text-sm font-semibold text-ink-950 hover:bg-brass-400 transition-colors"
+                  >
+                    {t.ctaApply} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="lift-hover inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                  >
+                    {lang === "am" ? "ስለ እኛ" : "Learn About Us"}
+                  </Link>
+                </div>
               </div>
             </Reveal>
           </div>
