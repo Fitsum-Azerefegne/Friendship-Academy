@@ -13,6 +13,30 @@ jobs:
     steps:
       - name: Ping Supabase REST API
         run: |
-          curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/" \
-            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+          set -euo pipefail
+
+          SUPABASE_URL="${{ secrets.SUPABASE_URL }}"
+          SUPABASE_ANON_KEY="${{ secrets.SUPABASE_ANON_KEY }}"
+          export SUPABASE_ANON_KEY
+
+          extract_host() {
+            echo "$1" | sed -E 's#^https?://([^/]+).*$#\1#'
+          }
+
+          if ! getent hosts "$(extract_host "$SUPABASE_URL")" >/dev/null 2>&1; then
+            echo "Configured SUPABASE_URL host could not be resolved. Attempting to derive URL from anon key."
+
+            DERIVED_SUPABASE_URL="$(python3 -c 'import base64, json, os; token = os.environ.get("SUPABASE_ANON_KEY", ""); parts = token.split("."); print((lambda iss: iss[:-8] if iss.endswith("/auth/v1") else "")(json.loads(base64.urlsafe_b64decode(parts[1] + "=" * (-len(parts[1]) % 4)).decode("utf-8")).get("iss", "")) if len(parts) >= 2 else "", end="")' || true)"
+
+            if [ -n "$DERIVED_SUPABASE_URL" ] && getent hosts "$(extract_host "$DERIVED_SUPABASE_URL")" >/dev/null 2>&1; then
+              SUPABASE_URL="$DERIVED_SUPABASE_URL"
+              echo "Using Supabase URL derived from anon key issuer claim."
+            else
+              echo "Unable to resolve Supabase host from configured URL or derived URL."
+              exit 1
+            fi
+          fi
+
+          curl --retry 3 --retry-all-errors --retry-delay 5 --connect-timeout 15 --max-time 60 \
+            -X GET "$SUPABASE_URL/rest/v1/" \
+            -H "apikey: $SUPABASE_ANON_KEY"
